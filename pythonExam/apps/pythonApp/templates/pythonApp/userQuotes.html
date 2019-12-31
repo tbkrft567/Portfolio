@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>User's Quotes</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .header {
+            display: inline-block;
+
+        }
+
+        h1 {
+            display: inline-block;
+            margin-right: 125px;
+        }
+
+        ul {
+            font-size: 16px;
+        }
+
+        .details {
+            margin: 15px 20px;
+        }
+        .details h3{
+            display: inline-block;
+            margin-right: 50px;
+        }
+
+        .details h6{
+            display: inline-block;
+            border: 1px solid purple;
+            padding: 2px;
+        }
+        .details h5{
+            margin: 15px 0px 5px 35px;
+        }
+
+        .container {
+            margin: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+
+            <h1>User Dashboard</h1>
+            <a href="/dashboard">Dashboard</a> |
+            <a href="/logout">Log Out</a>
+        </div>
+        <div class="details">
+            <h3>Posts created by {{ user.firstName }}</h3>
+            <h6>Count: {{ quotes.count }}</h6>
+            <h5>Quotes:</h5>
+            <ul>
+                {% for quote in quotes %}
+                <li>{{ quote.quoted_by }}: {{ quote.quote_text }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

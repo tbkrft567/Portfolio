@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Group <%= @group.name %></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      .header h3{
+            display: inline-block;
+            width: 450px;
+         }
+         .main_content{
+            margin: 20px;
+         }
+    </style>
+  </head>
+  <body>
+      <div class="header">
+         <h3><%= @group.name %></h3>
+         <%= link_to "Log Out", sessions_destroy_path, method:"delete" %> | 
+         <%= link_to "Group Dashboard", groups_index_path %>
+      </div>
+      <div class="main_content">
+         <% if flash[:alert] %>
+         <h4>Notifications</h4>
+         <ul>
+            <% flash[:alert].each do |error| %>
+               <li>
+                  <%= error %>
+               </li>
+            <% end %>
+         </ul>
+         <% end %>
+         <% if @members.include?(@user) %>
+            <%= button_to "Leave Group", members_destroy_path, method:"delete", params: {id: @group.id}, class: "btn btn-secondary", data: { disable_with: "Please wait..." } %>
+         <% else %>
+            <%= button_to "Join Group", members_create_path, method:"post", params: {id: @group.id},class: "btn btn-secondary", data: { disable_with: "Please wait..." } %>
+         <% end %>
+         Description: <%= @group.description %>
+   
+         <% if @group.user == @user %>
+            <p>Created By: You</p>
+         <% else %>
+            <p>Created By: <%= @group.user.first_name %> <%= @group.user.last_name %></p>
+         <% end %>
+   
+         <% if @members %>
+         <p>Members:</p>
+         <ul>
+            <% @members.each do |member|%>
+            <li>
+               <%= member.first_name %> <%= member.last_name %>
+            </li>         
+            <% end %>
+         </ul>
+         <% end %>
+      </div>
+      <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

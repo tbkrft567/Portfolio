@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>Main Groups Page</title>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <style>
+         .header h3{
+            display: inline-block;
+            width: 450px;
+         }
+         .main_content{
+            /* outline: 2px solid fuchsia; */
+            padding: 15px
+         }
+         .allGroup{
+            display: inline-block;
+            margin: 10px;
+            
+         }
+         .newGroup{
+            border: 3px solid gray;
+            padding: 8px;
+            display: inline-block;
+            vertical-align: center;
+            margin: 10px;
+         }
+      </style>
+</head>
+
+<body>
+   <div class="header">
+      <h3>Hi <%= @user.first_name %> <%= @user.last_name %>!</h3>
+      <%= link_to "Log Out", sessions_destroy_path, method:"delete" %>
+   </div>
+   <div class="main_content">
+
+   </div class="main_content">
+   <div class="allGroup">
+      <p>Here are the organizations you may join:</p>
+      <% @groups.each do |group| %>
+         <div class="groupDetails">
+            <hr>
+            <% if group.user == @user %>
+               <%= link_to "Delete", groups_destroy_path(id: group.id), method:"delete", class: "btn btn-secondary" %><br>
+            <% end %>
+            <h5><%= link_to group.name, groups_show_path(id: group.id)%></h5>
+            <p>Members: <%= group.members.count %></p>
+            <p><%= group.description %></p>
+         </div>
+      <% end %>
+   </div>
+
+   <div class="newGroup">
+      <% if flash[:alert] %>
+      <h4>Notifications</h4>
+      <ul>
+         <% flash[:alert].each do |error| %>
+            <li>
+               <%= error %>
+            </li>
+         <% end %>
+      </ul>
+      <% end %>
+      <h4>Create New Group</h4>
+      <form action="/groups/create" method="POST">
+         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+         <p>Org Name:</p>
+         <input type="text" name="group[name]">
+         <p>Description:</p>
+         <textarea name="group[description]" cols="30" rows="3"></textarea>
+         <%= button_to "Create", groups_create_path, method:"post",  data: { disable_with: "Please wait..." } %>
+      </form>
+   </div>
+
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>

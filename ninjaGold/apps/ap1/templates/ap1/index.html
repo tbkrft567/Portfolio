@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .decisions {
+            display: inline-block;
+            width: 200px;
+            height: 125px;
+            vertical-align: top;
+            margin: 30px 5px;
+        }
+
+        .scoreboard {
+            padding-top: 50px;
+            text-align: left;
+            width: 900px;
+        }
+
+        .scoreboard .desc {
+            display: inline-block;
+            margin-left: 100px;
+            font-weight: bold;
+        }
+
+        .scoreboard .score {
+            text-align: right;
+            display: inline-block;
+            width: 75px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    {% if 'completionMessage' not in request.session %}
+    <div class="scoreboard">
+        <p class="desc">Your Gold:</p>
+        <div class="score">
+            <p>{{ request.session.totalGold }}</p>
+        </div>
+        <p class="desc">Attempts:</p>
+        <div class="score">
+            <p>{{ request.session.attempts }}</p>
+        </div>
+    </div>
+    <div>
+
+        {% if 'goldGoal' in request.session %}
+        {% if 'tries' in request.session %}
+        <div class='decisions'>
+            <h4>Farm</h4>
+            <p>(earns 10-20 golds)</p>
+            <form action="/process" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="farm">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <div class='decisions'>
+            <h4>Cave</h4>
+            <p>(earns 5-10 golds)</p>
+            <form action="/process" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="cave">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <div class='decisions'>
+            <h4>House</h4>
+            <p>(earns 2-5 golds)</p>
+            <form action="/process" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name='building' value="house">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <div class='decisions'>
+            <h4>Casino</h4>
+            <p>(earns/takes 0-50 golds)</p>
+            <form action="/process" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name='building' value="casino">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+
+    {% if 'goldGoal' in request.session %}
+    <p>Your goal is to reach {{ request.session.goldGoal }} gold in {{ request.session.tries }} tries!!</p>
+    <p>Good Luck!!</p>
+    <h5>Activities</h5>
+    <textarea name="activities" cols="100" rows="5">{{ request.session.activities }}</textarea>
+    {% else %}
+    <h4>Set Your Goals</h4>
+    <form action="/gameSettings" method="POST">
+        {% csrf_token %}
+        Gold
+        <input type="Text" name='goldGoal'>
+        Tries
+        <input type="text" name="countGoal">
+        <input type="submit" value="Submit">
+    </form>
+    {% endif %}
+
+    {% else %}
+    <h1>
+        {{ request.session.completionMessage }}
+        <form action="/reset" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Reset">
+        </form>
+    
+    </h1>
+    {% endif %}
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

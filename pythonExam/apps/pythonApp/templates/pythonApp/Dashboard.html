@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .header h2 {
+            display: inline-block;
+            width: 500px;
+        }
+
+        .header a {
+            vertical-align: top;
+        }
+
+        .listContainer {
+            width: 350px;
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 20px;
+        }
+        .listContainer1 {
+            width: 350px;
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 20px;
+        }
+
+        .listContainer2 {
+            border: 3px solid black;
+        }
+
+        .listContainer3 {
+            border: 3px solid purple;
+        }
+
+        .listContainer .postedBy {
+            display: inline-block;
+        }
+        .listContainer1 .postedBy {
+            display: inline-block;
+        }
+
+        .quote {
+            margin: 3px;
+            border: 1px solid black;
+        }
+
+        .createQuote {
+            width: 350px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h2>Welcome, {{ user.firstName }}!</h2>
+        <a href="/logout">Log Out</a>
+    </div>
+
+    <div class=listContainer>
+        <h6>Quoteable Quotes</h6>
+        <div class=listContainer2>
+            {% for nonFavQuote in nonFav_quotes %}
+            <form action="/addFav/{{ nonFavQuote.id }}" method="POST">
+                {% csrf_token %}
+                <div>
+                    <div class="quote">
+                        {% if user.id == nonFavQuote.creator.id %}
+                        <a href="/edit/{{ nonFavQuote.id }}">Edit</a> |
+                        <a href="/delete/{{ nonFavQuote.id }}">Delete</a>
+                        {% endif %}
+                        <p>{{ nonFavQuote.quoted_by }}: {{ nonFavQuote.quote_text }}</ps>
+                            <p class="postedBy">Post By: <a
+                                    href="/userQuotes/{{ nonFavQuote.creator.id }}">{{ nonFavQuote.creator.firstName }}</a>
+                            </p>
+                            <input type="submit" value="Add to Favorites">
+                    </div>
+                    
+                </div>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class=listContainer1>
+        <h6>Your Favorite Quotes</h6>
+        <div class="listContainer3">
+            {% for myFavQuote in myFav_quotes %}
+            <form action="/removeFav/{{ myFavQuote.id }}" method="POST">
+                {% csrf_token %}
+                <div>
+                    <div class="quote">
+                        {% if user.id == myFavQuote.creator.id %}
+                        <a href="/edit/{{ myFavQuote.id }}">Edit</a> |
+                        <a href="/delete/{{ myFavQuote.id }}">Delete</a>
+                        {% endif %}
+                        <p>{{ myFavQuote.quoted_by }}: {{ myFavQuote.quote_text }}</p>
+                        <p class="postedBy">Post By: <a
+                                href="/userQuotes/{{ myFavQuote.creator.id }}">{{ myFavQuote.creator.firstName }}</a>
+                        </p>
+                        <input type="submit" value="Remove from Favorites">
+                    </div>
+                    
+                </div>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="createQuote">
+        <h6>Contribute a Quote</h6>
+        {% if messages %}
+        <h6>Error Messages</h6>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="/createQuote" method="POST">
+            {% csrf_token %}
+            <p>Quoted By</p>
+            <input type="text" name="quoted_by">
+            <p>Message</p>
+            <textarea name="quote_text" cols="30" rows="5"></textarea>
+            <input type="submit" value="submit">
+        </form>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
