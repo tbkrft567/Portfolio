@@ -10,11 +10,68 @@
    <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <style>
+      h1 {
+         display: inline-block;
+         margin-right: 150px;
+      }
+
+      .login {
+         display: inline-block;
+         margin: 20px;
+         vertical-align: top;
+      }
+
+      .login p {
+         margin: 0px;
+         margin-top: 3px;
+      }
+
+      .header {
+         margin-left: 10px;
+      }
+      
+      nav{
+         margin-left: 10px;
+      }
+   </style>
 </head>
 
 <body>
-
-   <h1>Register</h1>
+   <nav>
+      <% if @logged %>
+         <%= link_to "Message Dashboard", messages_index_path %> |
+         <%= link_to "Log Out", sessions_destroy_path, method:"delete" %>
+      <% end %>
+   </nav>
+   <div class="header">
+      <h1>Register</h1>
+      <h1>Login</h1>
+   </div>
+   <div class="login">
+      <form action="/user/create" method="POST">
+         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+         <p>Name</p>
+         <input type="text" name="user[name]">
+         <p>Email</p>
+         <input type="text" name="user[email]">
+         <p>Password</p>
+         <input type="password" name="user[password">
+         <p>Password Confirmation</p>
+         <input type="password" name="user[password_confirmation">
+         <%= button_to "Register", user_create_path %>
+      </form>
+   </div>
+   <div class="login">
+      <form action="/sessions/create" method="POST">
+         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+         <p>Email</p>
+         <input type="text" name="user[email]">
+         <p>Password</p>
+         <input type="password" name="user[password">
+         <%= button_to "Login", sessions_create_path %>
+      </form>
+   </div>
    <% if flash[:alert] %>
    <ul>
       <% flash[:alert].each do |error| %>
@@ -24,30 +81,7 @@
       <% end %>
    </ul>
    <% end %>
-   <form action="/user/create" method="POST">
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      <p>Name</p>
-      <input type="text" name="user[name]">
-      <p>Email</p>
-      <input type="text" name="user[email]">
-      <p>Password</p>
-      <input type="password" name="user[password">
-      <p>Password Confirmation</p>
-      <input type="password" name="user[password_confirmation">
-      <%= button_to "Register", user_create_path %>
-   </form>
-   <form action="/sessions/create" method="POST">
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      <p>Email</p>
-      <input type="text" name="user[email]">
-      <p>Password</p>
-      <input type="password" name="user[password">
-      <%= button_to "Login", sessions_create_path %>
-   </form>
-   <% if @logged %>
-      <%= link_to "Message Dashboard", messages_index_path %> | 
-      <%= link_to "Log Out", sessions_destroy_path, method:"delete" %>
-   <% end %>
+
    <!-- Optional JavaScript -->
    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

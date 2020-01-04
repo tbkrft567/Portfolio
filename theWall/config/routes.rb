@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   delete '/sessions/destroy', to: 'sessions#destroy' 
   get '/messages/index', to: 'messages#index'
   post '/messages/create', to: 'messages#create'
+  delete '/messages/destroy', to: 'messages#destroy'
+  delete '/comments/destroy', to: 'comments#destroy'
   post '/comments/create', to: 'comments#create'
   match '*path' => redirect('/user/new'), via: :get
 end

@@ -1,18 +1,109 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-      <h6>CodingDojo Wall</h6>
-      <h4>Welcome <%= @user.name%></h4>
-      <%= link_to "Log Out", '/sessions/destroy', method:"delete" %>
+<head>
+   <title>Title</title>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <style>
+      .header {
+         padding: 25px;
+      }
+
+      .header .nav_ {
+         display: inline-block;
+      }
+
+      .header h4 {
+         margin-right: 150px;
+         margin-left: 150px;
+      }
+
+      .wrapper {
+         margin-left: 25px;
+      }
+
+      .threadComment {
+         margin-left: 35px;
+      }
+
+      .newMessage {
+         display: inline-block;
+         margin-right: 20px
+      }
+
+      .newMessageBtn {
+         display: block;
+         width: 340px;
+      }
+
+      .newCommentBtn {
+         display: block;
+         margin-bottom: 15px
+      }
+
+      .messageBoard {
+         display: inline-block;
+         vertical-align: top;
+      }
+      .postHeader{
+         display: inline-block;
+         margin-right: 10px;
+         text-decoration: underline;
+      }
+      .button_to{
+         display: inline-block;
+         font-size: 9px;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="header">
+      <h6 class="nav_">CodingDojo Wall</h6>
+      <h4 class="nav_">Welcome <%= @user.name%></h4>
+      <%= link_to "Log Out", '/sessions/destroy', method:"delete", class: "nav_" %>
+   </div>
+
+   <div class="wrapper">
+      <div class="newMessage">
+         <form action="/messages/create" method="POST">
+            <textarea name="messages[message]" cols="45" rows="8"></textarea>
+            <%= button_to "Post Message", '/messages/create', method: :POST, class: "newMessageBtn" %>
+         </form>
+      </div>
+      <div class="messageBoard">
+         <% @messages.each do |msg| %>
+         <h4 class="postHeader"><%= msg.user.name %> -- <span class="createdDate"><%= msg.created_at %></span></h4>
+         <% if msg.user == @user %>
+            <%= button_to "Delete", messages_destroy_path, method:"delete", params: {idMsg: msg.id} %>
+         <% end %>
+            <p class="theMessage"><%= msg.message %></p>
+
+         <div class="threadComment">
+            <% @comments.each do |cmt|%>
+               <% if cmt.message.id == msg.id %>
+               <h6 class="postHeader"><%= cmt.user.name %> -- <span class="createdDate"><%= cmt.created_at %></h6>
+                  <% if cmt.user == @user %>
+                     <%= button_to "Delete", comments_destroy_path, method:"delete", params: {idMsg: msg.id, idCmt: cmt.id} %>
+                  <% end %>
+                  <p><%= cmt.comment %></p>
+               <% end %>
+            <% end %>
+                  <p class="newComment">Post a Comment</p>
+                  <form action="/comments/create" method="POST">
+                     <input type="hidden" name="authenticity_tsoken" value="<%= form_authenticity_token %>">
+                     <textarea name="cmt[comment]" cols="40" rows="2"></textarea>
+                     <%= button_to "Post Comment", comments_create_path, method: :POST, class: "newCommentBtn", params: { id: msg.id } %>
+                  </form>
+         </div>
+         <% end %>
+      </div>
 
       <% if flash[:alert] %>
       <h4>notifications</h4>
@@ -24,36 +115,18 @@
          <% end %>
       </ul>
       <% end %>
-      <form action="/messages/create" method="POST">
-         <textarea name="messages[message]" cols="60" rows="4"></textarea>
-         <%= button_to "Post Message", '/messages/create', method: :POST %>
-      </form>
-      <ul>
-         <% @messages.each do |msg| %>
-         <li>
-            <%= msg.user.name %> || <%= msg.message %> <br>
+   </div>
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script> -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+</body>
 
-            <ul>
-               <% @comments.each do |cmt|%>
-                  <% if cmt.message.id == msg.id %>
-                     <li>
-                        <%= cmt.comment %> || <%= cmt.user.name %>
-                     </li>
-                  <% end %>
-               <% end %>
-                  <form action="/comments/create" method="POST">
-                     <input type="hidden" name="authenticity_tsoken" value="<%= form_authenticity_token %>">
-                     <textarea name="cmt[comment]" cols="60" rows="2"></textarea>
-                     <%= button_to "Post Comment", comments_create_path, method: :POST, params: { id: msg.id } %>
-                  </form>
-            </ul>
-         </li>
-         <% end %>
-      </ul>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
 </html>
