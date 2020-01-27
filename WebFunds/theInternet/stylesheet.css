@@ -1,0 +1,252 @@
+*{
+    padding: 0px;
+    margin: 0px;    
+}
+.wrapper{
+    width: 830px;
+    height: 730px;
+    display: inline-block;
+}
+
+/*================================================================================================*/
+.header{
+    width: 100%;
+    height: 120px;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+}
+    .header img{
+        width: 80px;
+        height: 80px;
+        margin-bottom: -30px;
+        display: inline-block;
+    }
+    .header h1{
+        width: 710px;
+        display: inline-block;
+        vertical-align: top;
+        padding-top: 20px;
+        font-size: 40px;
+
+    }
+    .header h2{
+        width: 815px;
+        margin: auto;
+        padding: 15px 0px 10px 15px; 
+        /* MARGIN: -20PX 15PX 0px 0px;
+        PADDING: 0PX 25px 10px 10px; */
+        /* display: inline-block; */
+        background-image: linear-gradient(#24669e, #5182ac, #24669e) ;
+        color: white;
+        font-size: 26px;
+    }
+    .header span{
+        color: #24679f;
+    }
+    
+    /*================================================================================================*/
+    .sideBar{
+    width: 200px;
+    height: 605px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    vertical-align: top;
+}
+    .sideBar h5 {
+        margin: 25px 15px 5px 5px;
+        font-weight: bold;
+    }
+    .sideBar h5 span{
+        color: #d92720;
+    }
+    .sideBar h6 {
+        margin: 15px 5px;
+        font-weight: bold;
+        font-size: 12px;
+    }
+    .sideBar h6 span{
+        color: #3471a5;
+    }
+    
+    .sideBar .blueButton{
+        width: 150px;
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 0px 8px 25px;
+        margin: 2px;
+        font-size: 15px;
+        color: white;
+        background-image: linear-gradient(#5e94c1, #2668a0) ;
+        border-radius: 5px;
+    }
+    .sideBar .orangeButton{
+        width: 150px;
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 10px 8px 15px;
+        margin: 2px;
+        font-size: 15px;
+        color: white;
+        background-image: linear-gradient(#eaae57, #ef7400) ;
+        border-radius: 5px;
+    }
+    
+    .sideBar hr{
+        background-color: #c2c2c2;
+        width: 185px;
+        height: 2px;
+        margin: 15px 0px;
+    }
+    
+    .sideBar .reinventCareer{
+        width: 185px;
+        height: 260px;
+        background-image: url(www-images/images/ad_background.png);
+        background-size: 340px 650px;
+        text-align: center;
+    }
+        
+    .sideBar .reinventCareer h2{
+        color: white;
+        padding-top: 15px;
+        }
+        .sideBar .reinventCareer img{
+            width: 75px;
+            height: 105px;
+            display: inline-block;
+        }
+        .sideBar .reinventCareer a{
+            width: 145px;
+            margin-top: 10px;
+            padding: 4px;
+            text-decoration: none;
+            color: white;
+            border-radius: 3px;
+            font-size: 14px;
+            background-image: linear-gradient(#73cfdf,#00c1df) ;
+            display: inline-block;
+        }
+        
+        /*================================================================================================*/
+        .main_content{
+            width: 625px;
+            height: 605px;
+    display: inline-block;
+}
+    .main_content .navigation{
+        width: 625px;
+        height: 65px;
+        margin-top: 3px;
+        display: inline-block;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+        .main_content .navigation hr{
+            background-color: #c2c2c2;
+            width: 600px;
+            height: 1px;
+            margin: 10px 10px;
+        }    
+        .main_content .navigation img{
+            width: 18px;
+            height: 18px;
+            margin-top: 3px;
+            display: inline-block;
+        }
+        .main_content .navigation h5{
+            width: 25px;
+            height: 18px;
+            margin-right: 370px;
+            margin-top: 8px;
+            display: inline-block;
+            vertical-align: top;
+            color: #3370a4;
+        }
+            .main_content .navigation .contacts{
+                width: 200px;
+                height: 50px;
+                display: inline-block;
+                vertical-align: top;
+            }
+                .main_content .navigation .contacts img{
+                    width: 35px;
+                    height: 35px;
+                    vertical-align: top;
+                    margin-top: 15px;
+                    display: inline-block;
+                }
+                    .main_content .navigation .contacts .pNumbers{
+                        width: 160px;
+                        display: inline-block;
+                    }
+                    
+                    .main_content .navigation .contacts .pNumbers h6{
+                        vertical-align: top;
+                        height: 10px;
+                        padding: 2px;
+                        font-size: 10px;
+                        display: inline-block;
+                    }
+                    .main_content .navigation .contacts .pNumbers h3{
+                        display: inline-block;
+                        color: #00c0df;
+                    }
+        #bigThree{
+            border-left: 2px solid #0085e0;
+            border-top: 2px solid #0085e0;
+            border-right: 2px solid #0085e0;
+            height: 110px;
+        }
+        #bigThree img{
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            margin-left: 10px;
+            display: inline-block;
+        }
+        #bigThree div{
+            width: 500px;
+            height: 100px;
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 10px;
+        }
+        #bigThree p{
+        font-size: 11px;
+        }
+
+        .main_content .verbiage{
+            width: 625px;
+            height: 150px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
+        }
+        .main_content .verbiage h3{
+            margin-left: 5px;
+            color: #23669e;
+        }
+        .main_content .verbiage p{
+            margin-top: 4px; 
+            margin-left: 5px;
+        }
+        .main_content .verbiage li{
+            padding: 0px;
+            margin-top: 4px; 
+            margin-left: 35px;
+        }
+        .main_content .verbiage .smallerText{
+            font-size: 11px;
+        }
+        .main_content .verbiage span{
+            color: #029ab0;
+        }
+        .main_content .verbiage .bold{
+            font-weight: bold;
+            color: black;
+        }
+        
+        .main_content .client{
+            height: 85px;
+            margin-left: 188px;
+            margin-bottom: 10px;
+        }
+        

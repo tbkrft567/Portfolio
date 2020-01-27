@@ -1,0 +1,193 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.wrapper{
+    width: 600px;
+    height: 750px;
+    background-color: black;
+    border: 6px solid #171717;
+    border-bottom: none;
+    font-family: Arial, Helvetica, sans-serif;
+    /* outline: 5px solid firebrick; */
+}
+
+
+.header{
+    height: 70px;
+    background-color: #1a1a1a;
+}
+    .wrapper .header img{
+        width: 175px;
+        height: 50px;
+        margin-right: 275px;
+        display: inline-block;
+    }
+    .header p{
+        width: 115px;
+        display: inline-block;
+        color: #b5b7ba;
+        font-size: 10px;
+        vertical-align: top;
+        margin-top: 15px;
+        padding-left: 30px;
+    }
+/*=============================================================================*/
+.navigation{
+    height: 25px;
+    background-image:linear-gradient(#525252, #252525) ;
+}
+    .navigation .emptySpace{
+        width: 575px;
+        border-right: 1px solid #3d3d3d;
+    }
+    .navigation .activeSelection {
+        color: white;
+        border-left: none;
+    }
+    .navigation a{
+        text-decoration: none;
+        color: #a3a3a3;
+        margin-top: 4px;
+        font-size: 10px;
+        padding: 4px 8px;
+        text-emphasis: bold;
+        /* -webkit-border-image: -webkit-gradient(linear, left top, right bottom, from(#3d3d3d), to(#444444)); */
+        border-left: 1px solid #3d3d3d;
+        /* border-left: 1px solid white; */
+        display: inline-block;
+    }
+/*=============================================================================*/
+.tasks .sleeper{
+    width: 600px;
+    height: 230px;
+    border-bottom: 3px solid #3b3b3b;
+    /* outline: 2px solid fuchsia; */
+}
+/*=============================================================================*/
+.tasks{
+    height: 340px;
+    /* display: inline-block; */
+    background-color: #1a1a1a;
+    /* outline: 2px solid fuchsia; */
+}
+    .tasks .taskOptions{
+        width: 146.5px;
+        height:100%;
+        display: inline-block;
+        /* vertical-align: top; */
+    }
+    .tasks .taskImage{
+        width: 35px;
+        height: 30px;
+        vertical-align: top;
+        margin-top: 18px;
+        /* display: block; */
+    }
+        .tasks .taskOptions .taskText{
+            width: 100px;
+            display: inline-block;
+            /* outline: 2px solid green; */
+            margin-top:10px;
+            padding-top: 10px;
+        }
+            .tasks .taskOptions .taskText .taskTitle{
+                color: #ef7f2c;
+                padding-bottom: 2px;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+            .tasks .taskOptions .taskText .taskDetails{
+                color: white;
+                line-height: 11px;
+                font-size: 8px;
+            }
+/*=============================================================================*/
+.pitchAttempt{
+    height: 90px;
+}
+    .pitchAttempt .pitchText{
+        width: 410px;
+        /* height: 90px; */
+        color: rgb(195, 195, 195);
+        text-emphasis: none;
+        padding-top: 25px;
+        display: inline-block;
+        margin-left: 15px
+    }
+    .pitchAttempt .pitchText p{
+        font-size: 9px;
+        line-height: 12px;
+    }
+    .pitchAttempt .pitchText h4{
+        padding-bottom: 8px;
+        font-family: sans-serif;
+        text-emphasis: none;
+    }
+    
+    .pitchAttempt button{
+        text-decoration: none;
+        color: white;
+        background-color: #ef802d;
+        border: none;
+        border-radius: 5px;
+        padding: 6px 17px;
+        margin-top: 35px;
+        margin-left: 65px;
+        font-size: 11px;
+        display: inline-block;
+        vertical-align: top;
+        
+    }
+    
+/*=============================================================================*/
+.subHeader{
+    height: 40px;
+    background-color: #1a1a1a;
+}
+    .subHeader h6{
+        color: white;
+        display: inline-block;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin: 12.5px 450px 0px 10px ;
+    }
+    .subHeader a{
+        color: #ef7f2c;
+        display: inline-block;
+        text-decoration: none;
+        font-size: 8px;
+        font-style: italic;
+    }
+/*=============================================================================*/
+.articles{
+    height: 185px;
+    background-color: #1a1a1a;
+}
+    .articles .story{
+        width: 144px;
+        display: inline-block;
+        margin-left: 2px;
+    }
+    .articles .story img{
+        width: 135px;
+        height: 80px;
+        color: #ef7f2c;
+        border:2px solid white;
+    }
+    .articles .story h6{
+        color: #ef7f2c;
+        margin: 4px 0px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    .articles .story p{
+        color: white;
+        line-height: 11px;
+        font-size: 8px;
+    }
+    .articles .topper{
+        text-decoration: none;
+        color: #696969;
+        font-size: 7px;
+        padding: 4px 10px 0px 550px;
+        background-color: #1a1a1a;
+    }
