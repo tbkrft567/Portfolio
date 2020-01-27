@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>Title</title>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <style>
+      .petRoot {
+         background-color: rgba(128, 128, 128, 0.244);
+      }
+
+      .petRoot h1 {
+         display: inline-block;
+         margin-right: 400px;
+      }
+
+      .petRoot a {
+         text-decoration: none;
+         color: white;
+         font-weight: bold;
+      }
+
+      .sideSpace {
+         margin: 20px;
+         display: inline-block;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="petRoot">
+      <h1>Pet Shelter</h1>
+      <a [routerLink]="['/pets/index']">Home</a>
+   </div>
+   <div class="sideSpace">
+      <router-outlet></router-outlet>
+   </div>
+</body>
+
+</html>

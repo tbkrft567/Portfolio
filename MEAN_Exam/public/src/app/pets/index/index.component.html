@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>Title</title>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <style>
+      .table{
+         width: 500px;
+         margin: 15px;
+         border: 4px solid black;
+      }
+   </style>
+</head>
+
+<body>
+   <h6>These pets are looking for a home!</h6>
+   <a [routerLink]="['/pets','new']">Add a pet to the shelter</a>
+   <table class="table">
+      <tr>
+         <th>Name</th>
+         <th>Type</th>
+         <th>Actions</th>
+      </tr>
+      <tr *ngFor="let pet of allPets">
+         <td>{{ pet.name }}</td>
+         <td>{{ pet.type }}</td>
+         <td>
+            <a [routerLink]="['/pets', pet._id,'show']">Details</a> | 
+            <a [routerLink]="['/pets', pet._id, 'edit']">Edit</a>
+         </td>
+      </tr>
+   </table>
+</body>
+
+</html>
